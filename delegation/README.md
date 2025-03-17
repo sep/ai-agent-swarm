@@ -1,14 +1,22 @@
-The Incident Commander assigns tasks to specialized response agents.
-
-Each agent handles a specific phase of the response lifecycle.
+In the Delegation pattern, agents handle distinct phases of drug development, passing control from one phase to the next.
+1. Input Molecule: The initial molecule candidate is provided.
+1. Preclinical Agent: Analyzes in vitro and animal testing results.
+1. Regulatory Agent: Ensures compliance with regulations.
+1. Trial Design Agent: Designs and executes clinical trials.
+1. Manufacturing Agent: Prepares for large-scale production.
 
 -----
 
-flowchart TD
-    A[Incident Commander Agent] --> B[Containment Agent]
-    A --> C[Eradication Agent]
-    A --> D[Recovery Agent]
+```mermaid
+flowchart TB
+    A[Input Molecule] --> B{Orchestrator Agent}
+    B --> C(Preclinical Agent)
+    B --> D(Regulatory Agent)
+    B --> E(Trial Design Agent)
+    B --> F(Manufacturing Agent)
 
-    B --> E[Contain Malware]
-    C --> F[Remove Malware]
-    D --> G[Restore Systems]
+    C -->|Results| B
+    D -->|Results| B
+    E -->|Results| B
+    F --> G[Approved Drug]
+```
